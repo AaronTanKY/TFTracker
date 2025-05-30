@@ -8,6 +8,7 @@ load_dotenv()
 
 
 api_key = os.getenv("RIOT_API_KEY")
+txt_file_name = "api_test_data.txt"
 
 # Define headers for authorization
 headers = {
@@ -26,9 +27,10 @@ response = requests.get(url, headers=headers)
 if response.status_code == 200:
     data = response.json()
     json_string = json.dumps(data, indent=4);
-    print("Success! Data saved into")
+    print(f"Success! Data saved into {txt_file_name}")
     with open("api_test_data.txt", "w", encoding="utf-8") as f:
         f.write(json_string)
 else:
     print(f"Failed to fetch data. Status code: {response.status_code}")
     print(response.text)
+
